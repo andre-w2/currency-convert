@@ -1,30 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <Header :currency="store.mainCurrency" @update-currency="store.updateCurrency" />
+    <router-view />
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup lang="ts">
+import { onMounted } from "vue";
+import Header from "./components/TheHeader.vue";
+import { useCurrencyStore } from "./store/currency";
 
-nav {
-  padding: 30px;
-}
+const store = useCurrencyStore()
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+onMounted(() => {
+  store.init()
+  store.fetchInit()
+});
+</script>
