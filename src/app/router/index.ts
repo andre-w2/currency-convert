@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/HomePage.vue';
-import Convert from '../views/ConvertPage.vue';
+import ConvertPage from '@/pages/ConvertPage.vue';
+import HomePage from '@/pages/HomePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/', component: Home },
-  { path: '/convert', component: Convert }
+  { path: '/', component: HomePage },
+  { path: '/convert', component: ConvertPage }
 ];
 
 const router = createRouter({

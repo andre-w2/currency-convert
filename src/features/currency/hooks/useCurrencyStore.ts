@@ -1,8 +1,8 @@
+import { fetchCurrencyRates } from "@/entities/currency/currencyApi";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
 type currencyType = "RUB" | "USD" | "EUR";
-const URL_API = "https://status.neuralgeneration.com/api/currency";
 
 export const useCurrencyStore = defineStore("currency", () => {
   const mainCurrency = ref<currencyType>("RUB");
@@ -16,11 +16,9 @@ export const useCurrencyStore = defineStore("currency", () => {
 
   const fetchInit = async () => {
     isLoading.value = true;
-
     try {
-      const response = await fetch(URL_API);
-      const fetchedRates = await response.json();
-
+      const fetchedRates = await fetchCurrencyRates();
+      
       if (mainCurrency.value === "RUB") {
         rates.value = {
           "USD": 1 / fetchedRates["rub-usd"], // 1 USD = x RUB
@@ -48,10 +46,9 @@ export const useCurrencyStore = defineStore("currency", () => {
   };
 
   const updateCurrency = (selectedCurrency: currencyType) => {
-    fetchInit()
-
     mainCurrency.value = selectedCurrency;
     localStorage.setItem("mainCurrency", selectedCurrency);
+    fetchInit();
   };
 
   return { mainCurrency, init, updateCurrency, rates, isLoading, fetchInit };

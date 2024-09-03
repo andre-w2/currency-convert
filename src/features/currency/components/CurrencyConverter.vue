@@ -2,7 +2,7 @@
   <div class="p-4">
     <h2>Конвертировать валюту</h2>
     <div class="flex items-center mt-4 border">
-      <Select :model-value="selectedCurrency1" @update:modelValue="(val) => selectedCurrency1 = val">
+      <Select :model-value="selectedCurrency1" @update:modelValue="(val: string) => selectedCurrency1 = val">
         <SelectTrigger class="w-[80px]">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
@@ -15,7 +15,7 @@
       <Input type="number" v-model.number="amount1" @input="convertCurrency1" />
     </div>
     <div class="flex items-center mt-2 border">
-      <Select :model-value="selectedCurrency2" @update:modelValue="(val) => selectedCurrency2 = val">
+      <Select :model-value="selectedCurrency2" @update:modelValue="(val: string) => selectedCurrency2 = val">
         <SelectTrigger class="w-[80px]">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref, watch } from "vue";
-import { Input } from "./ui/input";
+import { ref, watch } from "vue";
+import { Input } from "@/shared/components/ui/input";
 import {
   Select,
   SelectGroup,
@@ -40,7 +40,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectContent,
-} from "./ui/select";
+} from "@/shared/components/ui/select";
 
 const props = defineProps({
   conversionRates: {

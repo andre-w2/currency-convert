@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import ExchangeRates from "../components/ExchangeRates.vue";
+import ExchangeRates from "@/features/currency/components/ExchangeRates.vue";
 </script>

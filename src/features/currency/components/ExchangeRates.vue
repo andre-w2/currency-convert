@@ -19,8 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { useCurrencyStore } from "@/store/currency";
-import Skeleton from "./ui/skeleton/Skeleton.vue";
+import { useCurrencyStore } from "../hooks/useCurrencyStore";
+
+import Skeleton from "@/shared/components/ui/skeleton/Skeleton.vue";
 
 const store = useCurrencyStore()
 </script>

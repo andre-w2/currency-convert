@@ -34,7 +34,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectContent,
-} from "./ui/select";
+} from "@/shared/components/ui/select";
 
 const emit = defineEmits(["update-currency"]);
 defineProps({
